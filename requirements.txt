@@ -1,5 +1,6 @@
 gunicorn
 django
 whitenoise
+django-heroku
 social-auth-app-django
 django-widget-tweaks
