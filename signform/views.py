@@ -22,7 +22,7 @@ class NotLoginRequiredMixin(AccessMixin):
         return super().dispatch(request, *args, **kwargs)
 
 
-class SignUpView( View):
+class SignUpView(NotLoginRequiredMixin, View):
     template_name = 'signform/forms/signup.html'
 
     def post(self, request):
