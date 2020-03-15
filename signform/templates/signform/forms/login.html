@@ -1,0 +1,58 @@
+{% extends 'signform/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="row h-100">
+    <div class="col-sm-3 my-auto"></div>
+    <div class="col-sm-6 my-auto">
+        <div class="form">
+            <p class="text-center text-uppercase">Log in</p>
+            <div class="my-auto">
+                <a href="{% url 'social:begin' 'facebook' %}" disabled>
+                    <button type="button" class="btn btn-link" style="width:50%; float:left" disabled>
+                        <div class="text-uppercase">
+                            <i class="fab fa-facebook"></i> facebook
+                        </div>
+                    </button>
+                </a>
+                </button>
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
+                    <button type="button" class="btn btn-link" style="width:50%">
+                        <div class="text-uppercase">
+                            <i class="fab fa-google"></i> google
+                        </div>
+                    </button>
+                </a>
+            </div>
+            <div></div>
+            <div class="separator text-lowercase text-center">or</div>
+            <form method="post">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{form.username|add_class:"form-control"|attr:"placeholder:Username"}}
+                </div>
+
+                <div class="form-group">
+                    {{form.password|add_class:"form-control"|attr:"placeholder:Password"}}
+
+                    {% for error in form.password.errors %}
+                    <small id="{{form.password.id_for_label}}_help" class="form-text" style="color: red">
+                        {{error}}
+                    </small>
+                    {% endfor %}
+                </div>
+
+                <a href=""><button type="submit" class="btn btn-success text-uppercase" style="width: 100%; padding: 15px;">LOG IN</button></a>
+
+            </form>
+
+            <div style="padding-top:15px;">
+                <a href="{% url 'signform:signup'%}">
+                    <button type="button" class="btn btn-outline-primary" style="width: 100%;">REGISTER</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 my-auto"></div>
+</div>
+{% endblock %}

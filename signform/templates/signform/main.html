@@ -1,0 +1,21 @@
+{% extends 'signform/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<div class="row h-100">
+    <div class="col-sm-3 my-auto"></div>
+    <div class="col-sm-6 my-auto">
+        <div class="form">
+            Hello, {{user.username}}! You have successfully logged in.
+            <form action="{% url 'signform:logout'%}" method="post" style="padding-top:15px;">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-outline-primary">LOG OUT</button>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-3 my-auto"></div>
+</div>
+
+
+{% endblock %}

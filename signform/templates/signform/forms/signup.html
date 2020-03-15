@@ -1,0 +1,99 @@
+{% extends 'signform/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+
+
+<div class="row h-100">
+    <div class="col-sm-3 my-auto"></div>
+    <div class="col-sm-6 my-auto">
+        <div class="form">
+            <p class="text-center text-uppercase">Sign up with</p>
+            <div class="my-auto">
+                <a href="{% url 'social:begin' 'facebook' %}">
+                    <button type="button" class="btn btn-link" style="width:50%; float:left" disabled>
+                        <div class="text-uppercase">
+                            <i class="fab fa-facebook"></i> facebook
+                        </div>
+                    </button>
+                </a>
+                </button>
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
+                    <button type="button" class="btn btn-link" style="width:50%">
+                        <div class="text-uppercase">
+                            <i class="fab fa-google"></i> google
+                        </div>
+                    </button>
+                </a>
+            </div>
+            <div></div>
+            <div class="separator text-lowercase text-center">or</div>
+            <form method="post" style="padding-top: 15px">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{form.username|add_class:"form-control"|attr:"placeholder:Username"}}
+                </div>
+
+                <div class="form-group">
+                    {{form.first_name|add_class:"form-control"|attr:"placeholder:First Name"}}
+                </div>
+
+                <div class="form-group">
+                    {{form.last_name|add_class:"form-control"|attr:"placeholder:Last Name"}}
+                </div>
+
+                <div class="form-group">
+                    {{form.email|add_class:"form-control"|attr:"placeholder:Email"}}
+
+                    {% for error in form.email.errors %}
+                    <small id="{{form.email.id_for_label}}_help" class="form-text" style="color: red">
+                        {{error}}
+                    </small>
+                    {% endfor %}
+                </div>
+
+                <div class="form-group">
+                    {{form.password|add_class:"form-control"|attr:"placeholder:Password"}}
+
+                    {% for error in form.password.errors %}
+                    <small id="{{form.password.id_for_label}}_help" class="form-text" style="color: red">
+                        {{error}}
+                    </small>
+                    {% endfor %}
+                </div>
+
+
+                <div class="form-group">
+                    {{form.confirm_password|add_class:"form-control"|attr:"placeholder:Confirm password"}}
+
+                    {% for error in form.confirm_password.errors %}
+                    <small id="{{form.confirm_password.id_for_label}}_help" class="form-text" style="color: red">
+                        {{error}}
+                    </small>
+                    {% endfor %}
+                </div>
+
+                <div class="input-group mb-3">
+                    <div class="form-check">
+                        {{form.subscribe_news|add_class:"form-check-input"|attr:"id:subscribe_news"}}
+                        <label class="form-check-label" for="subscribe_news">I'd like to receive news and offers</label>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success" style="width: 100%; padding: 15px;">REGISTER</button>
+
+            </form>
+
+            <div style="display: flow-root; margin-top: 16px;">
+                <div style="float: left; padding-top: 5px;">Already have an account?</div>
+                <a href="{% url 'signform:login'%}">
+                    <button type="button" class="btn btn-outline-primary" style="float: right;">LOG IN</button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-3 my-auto"></div>
+</div>
+
+
+{% endblock %}

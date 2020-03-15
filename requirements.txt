@@ -1,0 +1,5 @@
+gunicorn
+django
+whitenoise
+social-auth-app-django
+django-widget-tweaks
