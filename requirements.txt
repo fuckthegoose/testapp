@@ -4,3 +4,5 @@ whitenoise
 django-heroku
 social-auth-app-django
 django-widget-tweaks
+psycopg2
+dj-database-url
